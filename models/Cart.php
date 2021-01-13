@@ -15,6 +15,19 @@ class Cart{
         }catch(PDOException $ex){ echo "erreur".$ex->getMessage();}
         }
         
+        static public function getCartpayment($data){
+     
+            try{
+                $stmt=DB::connect()->prepare("SELECT * FROM cart WHERE p_id=:id");
+                   $stmt->execute(['id'=>$data]);
+                    $row=$stmt->fetchAll();
+                    return $row;
+    
+                    $stmt=null;
+            
+            }catch(PDOException $ex){ echo "erreur".$ex->getMessage();}
+            }
+
         static public function getCart2($data,$data2){
            
             try{
@@ -63,5 +76,17 @@ class Cart{
                     }catch(PDOException $ex){ echo "erreur".$ex->getMessage();}
                     }
 
+                    static public function vidercart($new){
+           
+
+                        try{
+                            $stmt=DB::connect()->prepare('DELETE FROM cart where ip_add=:id ');
+                                $stmt->execute((['id'=>$new]));
+                                
+                              
+                                $stmt=null;
+                        
+                        }catch(PDOException $ex){ echo "erreur".$ex->getMessage();}
+                        }
         } ?>
         

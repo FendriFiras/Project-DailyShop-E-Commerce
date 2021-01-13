@@ -17,6 +17,12 @@ public function getPanier2($id1,$id2){
     return $panier;
 
 }
+public function getPanierpayment($data){
+        
+    $panier=Cart::getCartpayment($data);
+    return $panier;
+
+}
 public function updatepanier($new,$prod){
         
     
@@ -30,6 +36,12 @@ public function supp($new,$prod){
     $panier=Cart::supprimer($new,$prod);
     return $panier;
 
+}
+public function vider($new){
+        
+    
+    Cart::vidercart($new);
+    
 }
 
 }

@@ -3,14 +3,11 @@ include("../models/payement.php");
 include("../database/DB.php");
 
 class payementController{
-    public function getItems(){
-        $items=payement::items();
-        return $items;
-    }
-    public function getProd(){
-        $pro=payement::prod();
-        return $prod;
-    }
+    public function gopayer($total,$c_id,$pro_id){
+        
     
+        payement::payer($total,$c_id,$pro_id);
+        
+    }
 
 }
