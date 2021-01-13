@@ -126,7 +126,6 @@ if (isset($_GET['cat'])) {
                   ?>
                   <?php
                   if (!isset($_SESSION['customer_email'])) {
-                    
                   ?>
                     <li class="hidden-xs"><a href="Register.php">Register</a></li>
                   <?php } ?>
@@ -460,7 +459,7 @@ if (isset($_GET['cat'])) {
                 </div>
               </li>
               <li>
-                <div class="aa-testimonial-single"> <img class="aa-testimonial-img" src="img/testimonial-img-3.jpg" alt="testimonial img"> <span class="fa fa-quote-left aa-testimonial-quote"></span>
+                <div class="aa-testimonial-single"> <img class="aa-testimonial-img" src="../view/img/eya.jpg" alt="testimonial img"> <span class="fa fa-quote-left aa-testimonial-quote"></span>
 
                   <div class="aa-testimonial-info">
                     <p>Eya Ketata</p>
