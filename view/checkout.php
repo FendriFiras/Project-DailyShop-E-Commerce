@@ -1,6 +1,8 @@
 <?php
 include ("includes/head.php");
 include ("../controller/CartController.php");
+include("../controller/CustomerController.php");
+$cust=new CustomerController();
 ?>
 
 <!-- Cart view section -->
@@ -23,16 +25,27 @@ include ("../controller/CartController.php");
                           </a>
                         </h4>
                       </div>
+
+                   <?php   if(isset($_SESSION['customer_email'])){
+	                   $user = $_SESSION['customer_email'];
+	                   $customer=$cust->getCustommer($user);
+                        $first = $customer[0]['customer_fname']; 
+                        $last = $customer[0]['customer_lname']; 
+                        $country = $customer[0]['customer_country']; 
+                        $city = $customer[0]['customer_city'];
+                        $adresse = $customer[0]['Address']; 
+                        $contact = $customer[0]['customer_contact'];  }?>
+
                         <div class="panel-body">
                          <div class="row">
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="First Name*" >
+                                <input type="text" placeholder="First Name*" value=<?php echo "$first" ?> >
                               </div>                             
                             </div>
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="Last Name*">
+                                <input type="text" placeholder="Laste Name*" value=<?php echo "$last" ?>>
                               </div>
                             </div>
                           </div> 
@@ -46,27 +59,30 @@ include ("../controller/CartController.php");
                           <div class="row">
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input type="email" placeholder="Email Address*">
+                                <input type="email" placeholder="Email Address*" value=<?php echo "$user" ?> >
                               </div>                             
                             </div>
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input type="tel" placeholder="Phone*" >
+                                <input type="tel" placeholder="Phone*"  value=<?php echo "$contact" ?>>
                               </div>
                             </div>
                           </div> 
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
-                                <textarea cols="8" rows="3" >Address*</textarea>
+                              <input type="adresse" placeholder="Adresse*"  value=<?php echo "$adresse" ?>>
+                              
                               </div>                             
                             </div>                            
                           </div>   
                           <div class="row">
                             <div class="col-md-12">
                               <div class="aa-checkout-single-bill">
+                              
                                 <select >
-                                  <option value="0">Select Your Country</option>
+                                
+                                  <option value="0" ><?php echo "$country" ?></option>
                                   <option value="1">Australia</option>
                                   <option value="2">Afganistan</option>
                                   <option value="3">Bangladesh</option>
@@ -95,7 +111,7 @@ include ("../controller/CartController.php");
                             </div>
                             <div class="col-md-6">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" placeholder="City / Town*">
+                                <input type="text" placeholder="City / Town*"  value=<?php echo "$city" ?>>
                               </div>
                             </div>
                           </div>   
