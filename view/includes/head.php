@@ -72,7 +72,7 @@ include("funcs/funcs.php");
               
               <!-- start currency -->
               <div class="aa-currency">
-                <div class="dropdown"> <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fa fa-usd"></i>USD <span class="caret"></span> </a>
+                <div class="dropdown"> <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fa fa-usd"></i>TND<span class="caret"></span> </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li><a href="#"><i class="fa fa-euro"></i>EURO</a></li>
                     <li><a href="#"><i class="fa fa-jpy"></i>YEN</a></li>
@@ -82,7 +82,7 @@ include("funcs/funcs.php");
               <!-- / currency --> 
               <!-- start cellphone -->
               <div class="cellphone hidden-xs">
-                <p><span class="fa fa-phone"></span>00-62-658-658</p>
+                <p><span class="fa fa-phone"></span>+216 23161334</p>
               </div>
               <!-- / cellphone --> 
             </div>
@@ -90,12 +90,23 @@ include("funcs/funcs.php");
             
             <div class="aa-header-top-right">
               <ul class="aa-head-top-nav-right">
-                <li><a href="index.php">My Account</a></li>
-                <li class="hidden-xs"><a href="cart.php">Wishlist</a></li>
+                <li><a href="index.php">Home</a></li>
+
                 <li class="hidden-xs"><a href="cart.php">My Cart</a></li>
                 <li class="hidden-xs"><a href="checkout.php">Checkout</a></li>
-                <li class="hidden-xs"><a href="login.php">login</a></li>
-                
+                <?php
+                  if (isset($_SESSION['customer_email'])) {
+                    echo "<li><a href='logout.php' >Logout</a></li>";
+                  } else {
+                    echo "<li><a href='index.php'>Login</a></li>";
+                  }
+                  ?>
+                                  <?php
+                  				if(!isset($_SESSION['customer_email'])){
+                           
+                   ?>       
+                  <li class="hidden-xs"><a href="Register.php">Register</a></li>
+                  <?php } ?>
               </ul>
             </div>
           </div>
@@ -123,25 +134,7 @@ include("funcs/funcs.php");
             <!-- / logo  --> 
             
 
-            
-             <!-- cart box -->
-            <div class="aa-cartbox"> <a class="aa-cart-link" href="#"> <span class="fa fa-shopping-basket"></span> <span class="aa-cart-title">SHOPPING CART</span> <span class="aa-cart-notify"><?php total_items(); ?></span> </a>
-              <div class="aa-cartbox-summary">
-                <ul>
-                            
-                  <li> <a class="aa-cartbox-img" href="#"><img src="admin_area/product_images/<?php echo $product_image; ?>" alt="img"></a>
-                    <div class="aa-cartbox-info">
-                      <h4><a href="#"><?php echo $product_title; ?></a></h4>
-                      <p><?php echo $qty; ?> x <?php echo "$".$single_price; ?></p>
-                    </div>
-                    <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a> </li>
-                   
-                  <li> <span class="aa-cartbox-total-title"> Total </span> <span class="aa-cartbox-total-price"><?php total_price(); ?></span> </li>
-                 
-                </ul>
-                <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.php">Checkout</a> </div>
-            </div>
-            <!-- / cart box --> 
+
           
  <!-- search box -->
             <div class="aa-search-box">

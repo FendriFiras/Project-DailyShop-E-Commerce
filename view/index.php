@@ -6,6 +6,7 @@ include("funcs/funcs.php");
 include("../controller/CategoriesController.php");
 include("../controller/ProductsController.php");
 include("../controller/CartController.php");
+
 ?>
 <?php
 
@@ -94,7 +95,7 @@ if (isset($_GET['cat'])) {
 
                 <!-- start currency -->
                 <div class="aa-currency">
-                  <div class="dropdown"> <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fa fa-usd"></i>USD <span class="caret"></span> </a>
+                  <div class="dropdown"> <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fa fa-usd"></i>TND<span class="caret"></span> </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                       <li><a href="#"><i class="fa fa-euro"></i>EURO</a></li>
                       <li><a href="#"><i class="fa fa-jpy"></i>YEN</a></li>
@@ -104,7 +105,7 @@ if (isset($_GET['cat'])) {
                 <!-- / currency -->
                 <!-- start cellphone -->
                 <div class="cellphone hidden-xs">
-                  <p><span class="fa fa-phone"></span>00-62-658-658</p>
+                  <p><span class="fa fa-phone"></span>+216 23161334</p>
                 </div>
                 <!-- / cellphone -->
               </div>
@@ -112,17 +113,23 @@ if (isset($_GET['cat'])) {
 
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <li><a href="index.php">My Account</a></li>
-                  <li class="hidden-xs"><a href="cart.php">Wishlist</a></li>
+                  <li><a href="index.php">Home</a></li>
+
                   <li class="hidden-xs"><a href="cart.php">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.php">Checkout</a></li>
                   <?php
                   if (isset($_SESSION['customer_email'])) {
                     echo "<li><a href='logout.php' >Logout</a></li>";
                   } else {
-                    echo "<li><a href='login.php'>Login</a></li>";
+                    echo '<li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>';
                   }
                   ?>
+                  <?php
+                  if (!isset($_SESSION['customer_email'])) {
+                    
+                  ?>
+                    <li class="hidden-xs"><a href="Register.php">Register</a></li>
+                  <?php } ?>
                 </ul>
               </div>
             </div>
@@ -246,7 +253,7 @@ if (isset($_GET['cat'])) {
               <li style="float:right"><a>
                   <?php
                   if (isset($_SESSION['customer_email'])) {
-                    echo "Welcome " . $_SESSION['customer_email'];
+                    echo "Welcome " . substr($_SESSION['customer_email'], 0, 5);
                   } else {
                     echo "Welcome Guest";
                   }
@@ -395,22 +402,20 @@ if (isset($_GET['cat'])) {
             <!-- single support -->
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="aa-support-single"> <span class="fa fa-truck"></span>
-                <h4>FREE SHIPPING</h4>
-                <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, nobis.</P>
+                <h4>FREE SHIPPING IN SFAX</h4>
+
               </div>
             </div>
             <!-- single support -->
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="aa-support-single"> <span class="fa fa-clock-o"></span>
                 <h4>30 DAYS MONEY BACK</h4>
-                <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, nobis.</P>
               </div>
             </div>
             <!-- single support -->
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="aa-support-single"> <span class="fa fa-phone"></span>
                 <h4>SUPPORT 24/7</h4>
-                <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, nobis.</P>
               </div>
             </div>
           </div>
@@ -429,31 +434,37 @@ if (isset($_GET['cat'])) {
               <!-- single slide -->
 
               <li>
-                <div class="aa-testimonial-single"> <img class="aa-testimonial-img" src="view/img/testimonial-img-1.jpg" alt="testimonial img"> <span class="fa fa-quote-left aa-testimonial-quote"></span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
+                <div class="aa-testimonial-single"> <img class="aa-testimonial-img" src="../view/img/firas.jpg" alt="testimonial img"> <span class="fa fa-quote-left aa-testimonial-quote"></span>
                   <div class="aa-testimonial-info">
-                    <p>Allison</p>
-                    <span>Designer</span> <a href="#">Dribble.com</a>
+                    <p>Firas Fendri</p>
+                    <span>WEB DEVELLOPER</span> <a href="#">ENIS</a>
                   </div>
                 </div>
               </li>
               <!-- single slide -->
               <li>
-                <div class="aa-testimonial-single"> <img class="aa-testimonial-img" src="view/img/testimonial-img-1.jpg" alt="testimonial img"> <span class="fa fa-quote-left aa-testimonial-quote"></span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
+                <div class="aa-testimonial-single"> <img class="aa-testimonial-img" src="../view/img/emna.jpg" alt="testimonial img"> <span class="fa fa-quote-left aa-testimonial-quote"></span>
                   <div class="aa-testimonial-info">
-                    <p>KEVIN MEYER</p>
-                    <span>CEO</span> <a href="#">Alphabet</a>
+                    <p>Emna Belhaj</p>
+                    <span>WEB DEVELLOPER</span> <a href="#">ENIS</a>
                   </div>
                 </div>
               </li>
               <!-- single slide -->
+              <li>
+                <div class="aa-testimonial-single"> <img class="aa-testimonial-img" src="../view/img/zeinab.jpg" alt="testimonial img"> <span class="fa fa-quote-left aa-testimonial-quote"></span>
+                  <div class="aa-testimonial-info">
+                    <p>Zeinab Ben abdalah</p>
+                    <span>WEB DEVELLOPER</span> <a href="#">ENIS</a>
+                  </div>
+                </div>
+              </li>
               <li>
                 <div class="aa-testimonial-single"> <img class="aa-testimonial-img" src="img/testimonial-img-3.jpg" alt="testimonial img"> <span class="fa fa-quote-left aa-testimonial-quote"></span>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui!consectetur adipisicing elit. Sunt distinctio omnis possimus, facere, quidem qui.</p>
+
                   <div class="aa-testimonial-info">
-                    <p>Luner</p>
-                    <span>COO</span> <a href="#">Kinatic Solution</a>
+                    <p>Eya Ketata</p>
+                    <span>WEB DEVELLOPER</span> <a href="#">ENIS</a>
                   </div>
                 </div>
               </li>
@@ -525,49 +536,28 @@ if (isset($_GET['cat'])) {
                   <div class="aa-footer-widget">
                     <h3>Main Menu</h3>
                     <ul class="aa-footer-nav">
-                      <li><a href="#">Home</a></li>
-                      <li><a href="#">Our Services</a></li>
-                      <li><a href="#">Our Products</a></li>
-                      <li><a href="#">About Us</a></li>
-                      <li><a href="#">Contact Us</a></li>
+                      <li><a href="index.php">Home</a></li>
+                      <li><a href="cart.php">MyCart</a></li>
+                      <li><a href="index.php">Login</a></li>
+                      <li><a href="register.php">Register</a></li>
+                      <li><a href="/../notre_site/admin/">Escpace Admin</a></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
-                  <div class="aa-footer-widget">
-                    <div class="aa-footer-widget">
-                      <h3>Knowledge Base</h3>
-                      <ul class="aa-footer-nav">
-                        <li><a href="#">Delivery</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Discount</a></li>
-                        <li><a href="#">Special Offer</a></li>
-                      </ul>
-                    </div>
-                  </div>
+
                 </div>
                 <div class="col-md-3 col-sm-6">
-                  <div class="aa-footer-widget">
-                    <div class="aa-footer-widget">
-                      <h3>Useful Links</h3>
-                      <ul class="aa-footer-nav">
-                        <li><a href="#">Site Map</a></li>
-                        <li><a href="#">Search</a></li>
-                        <li><a href="#">Advanced Search</a></li>
-                        <li><a href="#">Suppliers</a></li>
-                        <li><a href="#">FAQ</a></li>
-                      </ul>
-                    </div>
-                  </div>
+
                 </div>
                 <div class="col-md-3 col-sm-6">
                   <div class="aa-footer-widget">
                     <div class="aa-footer-widget">
                       <h3>Contact Us</h3>
                       <address>
-                        <p> 25 Astor Pl, NY 10003, USA</p>
-                        <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
+                        <p> Sfax,Sakiet Ezzit KLM 7
+                        </p>
+                        <p><span class="fa fa-phone"></span>+216 23161334</p>
                         <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
                       </address>
                       <div class="aa-footer-social"> <a href="#"><span class="fa fa-facebook"></span></a> <a href="#"><span class="fa fa-twitter"></span></a> <a href="#"><span class="fa fa-google-plus"></span></a> <a href="#"><span class="fa fa-youtube"></span></a> </div>
@@ -586,7 +576,7 @@ if (isset($_GET['cat'])) {
         <div class="row">
           <div class="col-md-12">
             <div class="aa-footer-bottom-area">
-              <p>Designed by <a href="http://www.markups.io/">MarkUps.io</a></p>
+              <p>Designed by <a href="http://www.markups.io/">Firas Fendri / Zeinab ben abdalah / Eya Kteta / Emna Belhadj</a></p>
               <div class="aa-footer-payment"> <span class="fa fa-cc-mastercard"></span> <span class="fa fa-cc-visa"></span> <span class="fa fa-paypal"></span> <span class="fa fa-cc-discover"></span> </div>
             </div>
           </div>
@@ -603,7 +593,7 @@ if (isset($_GET['cat'])) {
         <div class="modal-body">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4>Login or Register</h4>
-          <form class="aa-login-form" action="" method="post">
+          <form class="aa-login-form" action="login.php" method="post">
             <label for="">Username or Email address<span>*</span></label>
             <input type="text" name="email" placeholder="Username or email" required>
             <label for="">Password<span>*</span></label>

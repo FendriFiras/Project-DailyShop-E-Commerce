@@ -34,7 +34,12 @@ $cust=new CustomerController();
                         $country = $customer[0]['customer_country']; 
                         $city = $customer[0]['customer_city'];
                         $adresse = $customer[0]['Address']; 
-                        $contact = $customer[0]['customer_contact'];  }?>
+                        $contact = $customer[0]['customer_contact'];  }
+                        else{
+                          echo "<script>alert('You must login first')</script>";
+                          echo "<script>window.open('index.php','_self')</script>";
+                        }
+                        ?>
 
                         <div class="panel-body">
                          <div class="row">

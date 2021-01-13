@@ -55,63 +55,67 @@ include("../controller/ProductsController.php");
 <header id="aa-header"> 
   <!-- start header top  -->
   <div class="aa-header-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="aa-header-top-area"> 
-            <!-- start header top left -->
-            <div class="aa-header-top-left"> 
-              <!-- start language -->
-              <div class="aa-language">
-                <div class="dropdown"> <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <img src="img/flag/english.jpg" alt="english flag">ENGLISH <span class="caret"></span> </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#"><img src="img/flag/french.jpg" alt="">FRENCH</a></li>
-                    <li><a href="#"><img src="img/flag/english.jpg" alt="">ENGLISH</a></li>
-                  </ul>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="aa-header-top-area">
+              <!-- start header top left -->
+              <div class="aa-header-top-left">
+                <!-- start language -->
+                <div class="aa-language">
+                  <div class="dropdown"> <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <img src="img/flag/english.jpg" alt="english flag">ENGLISH <span class="caret"></span> </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li><a href="#"><img src="img/flag/french.jpg" alt="">FRENCH</a></li>
+                      <li><a href="#"><img src="img/flag/english.jpg" alt="">ENGLISH</a></li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-              <!-- / language --> 
-              
-              <!-- start currency -->
-              <div class="aa-currency">
-                <div class="dropdown"> <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fa fa-usd"></i>USD <span class="caret"></span> </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#"><i class="fa fa-euro"></i>EURO</a></li>
-                    <li><a href="#"><i class="fa fa-jpy"></i>YEN</a></li>
-                  </ul>
+                <!-- / language -->
+
+                <!-- start currency -->
+                <div class="aa-currency">
+                  <div class="dropdown"> <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fa fa-usd"></i>TND<span class="caret"></span> </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li><a href="#"><i class="fa fa-euro"></i>EURO</a></li>
+                      <li><a href="#"><i class="fa fa-jpy"></i>YEN</a></li>
+                    </ul>
+                  </div>
                 </div>
+                <!-- / currency -->
+                <!-- start cellphone -->
+                <div class="cellphone hidden-xs">
+                  <p><span class="fa fa-phone"></span>+216 23161334</p>
+                </div>
+                <!-- / cellphone -->
               </div>
-              <!-- / currency --> 
-              <!-- start cellphone -->
-              <div class="cellphone hidden-xs">
-                <p><span class="fa fa-phone"></span>00-62-658-658</p>
+              <!-- / header top left -->
+
+              <div class="aa-header-top-right">
+                <ul class="aa-head-top-nav-right">
+                  <li><a href="index.php">Home</a></li>
+               
+                  <li class="hidden-xs"><a href="cart.php">My Cart</a></li>
+                  <li class="hidden-xs"><a href="checkout.php">Checkout</a></li>
+                  <?php
+                  if (isset($_SESSION['customer_email'])) {
+                    echo "<li><a href='logout.php' >Logout</a></li>";
+                  } else {
+                    echo '<li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>';
+                  }
+                  ?>
+                  <?php
+                  				if(!isset($_SESSION['customer_email'])){
+                           
+                   ?>       
+                  <li class="hidden-xs"><a href="Register.php">Register</a></li>
+                  <?php } ?>
+                </ul>
               </div>
-              <!-- / cellphone --> 
-            </div>
-            <!-- / header top left -->
-            
-            <div class="aa-header-top-right">
-              <ul class="aa-head-top-nav-right">
-                <li><a href="index.php">My Account</a></li>
-                <li class="hidden-xs"><a href="cart.php">Wishlist</a></li>
-                <li class="hidden-xs"><a href="cart.php">My Cart</a></li>
-                <li class="hidden-xs"><a href="checkout.php">Checkout</a></li>
-                <?php
-					if(isset($_SESSION['customer_email'])){
-						echo "<li><a href='logout.php' >Logout</a></li>" ;	
-					}
-					else{
-						echo "<li><a href='' data-toggle='modal' data-target='#login-modal'>Login</a></li>";
- 
-					}
-				?>
-              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   <!-- / header top  --> 
   
   <!-- start header bottom  -->
@@ -216,7 +220,7 @@ include("../controller/ProductsController.php");
             <li style="float:right"><a>
             <?php
 				if(isset($_SESSION['customer_email'])){
-					echo "Welcome " . $_SESSION['customer_email'];
+					echo "Welcome " .substr($_SESSION['customer_email'], 0, 5) ;
 				}
 				else{
 					echo "Welcome Guest";
@@ -235,7 +239,7 @@ include("../controller/ProductsController.php");
  
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
-   <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+   <img src="img/cart.jpg" alt="fashion img" height="20%" width="100%">
    <div class="aa-catg-head-banner-area">
      <div class="container">
       <div class="aa-catg-head-banner-content">
@@ -333,7 +337,7 @@ include("../controller/ProductsController.php");
                       <?php } } ?>
                       <tr>
                         <td colspan="6" class="aa-cart-view-bottom">
-                        
+                        <input style="margin-left:50px" class="aa-cart-view-btn" type="submit" name="update_cart" value="Delete">  
                         <input style="margin-left:50px" class="aa-cart-view-btn" type="submit" name="update_cart" value="Update Cart">  	
                         <input style="margin-left:50px" class="aa-cart-view-btn" type="submit" name="continue" value="Continue Shopping">
 						
@@ -416,7 +420,7 @@ include("../controller/ProductsController.php");
   <!-- / Subscribe section -->
 
  <!-- footer -->
-<footer id="aa-footer"> 
+ <footer id="aa-footer"> 
   <!-- footer bottom -->
   <div class="aa-footer-top">
     <div class="container">
@@ -428,49 +432,28 @@ include("../controller/ProductsController.php");
                 <div class="aa-footer-widget">
                   <h3>Main Menu</h3>
                   <ul class="aa-footer-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Our Services</a></li>
-                    <li><a href="#">Our Products</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="cart.php">MyCart</a></li>
+                    <li><a href="index.php">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
+                    <li><a href="/../notre_site/admin/">Escpace Admin</a></li>
                   </ul>
                 </div>
               </div>
               <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Knowledge Base</h3>
-                    <ul class="aa-footer-nav">
-                      <li><a href="#">Delivery</a></li>
-                      <li><a href="#">Returns</a></li>
-                      <li><a href="#">Services</a></li>
-                      <li><a href="#">Discount</a></li>
-                      <li><a href="#">Special Offer</a></li>
-                    </ul>
-                  </div>
-                </div>
+ 
               </div>
               <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Useful Links</h3>
-                    <ul class="aa-footer-nav">
-                      <li><a href="#">Site Map</a></li>
-                      <li><a href="#">Search</a></li>
-                      <li><a href="#">Advanced Search</a></li>
-                      <li><a href="#">Suppliers</a></li>
-                      <li><a href="#">FAQ</a></li>
-                    </ul>
-                  </div>
-                </div>
+
               </div>
               <div class="col-md-3 col-sm-6">
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
                     <h3>Contact Us</h3>
                     <address>
-                    <p> 25 Astor Pl, NY 10003, USA</p>
-                    <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
+                    <p> Sfax,Sakiet Ezzit KLM 7
+                    </p>
+                    <p><span class="fa fa-phone"></span>+216 23161334</p>
                     <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
                     </address>
                     <div class="aa-footer-social"> <a href="#"><span class="fa fa-facebook"></span></a> <a href="#"><span class="fa fa-twitter"></span></a> <a href="#"><span class="fa fa-google-plus"></span></a> <a href="#"><span class="fa fa-youtube"></span></a> </div>
@@ -489,7 +472,7 @@ include("../controller/ProductsController.php");
       <div class="row">
         <div class="col-md-12">
           <div class="aa-footer-bottom-area">
-            <p>Designed by <a href="http://www.markups.io/">MarkUps.io</a></p>
+            <p>Designed by <a href="http://www.markups.io/">Firas Fendri / Zeinab ben abdalah / Eya Kteta / Emna Belhadj</a></p>
             <div class="aa-footer-payment"> <span class="fa fa-cc-mastercard"></span> <span class="fa fa-cc-visa"></span> <span class="fa fa-paypal"></span> <span class="fa fa-cc-discover"></span> </div>
           </div>
         </div>

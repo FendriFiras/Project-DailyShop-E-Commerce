@@ -25,7 +25,7 @@ include("../controller/RegisterController.php");
             <li style="float:right"><a>
             <?php
 				if(isset($_SESSION['customer_email'])){
-					echo "Welcome " . $_SESSION['customer_email'];
+					echo "Welcome " .substr($_SESSION['customer_email'], 0, 5) ;
 				}
 				else{
 					echo "Welcome Guest";
@@ -33,6 +33,7 @@ include("../controller/RegisterController.php");
 				
 			?></a>
             </li>
+            
           </ul>
         </div>
         <!--/.nav-collapse --> 
@@ -44,11 +45,11 @@ include("../controller/RegisterController.php");
  
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
-    <img src="img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+    <img src="img/registration.jpg" alt="fashion img" height="20%" width="100%">
     <div class="aa-catg-head-banner-area">
      <div class="container">
       <div class="aa-catg-head-banner-content">
-        <h2>Account Page</h2>
+        <h2>Registration Page</h2>
         <ol class="breadcrumb">
           <li><a href="index.html">Home</a></li>                   
           <li class="active">Account</li>
