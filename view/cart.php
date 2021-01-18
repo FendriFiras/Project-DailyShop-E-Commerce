@@ -2,7 +2,7 @@
 include ("includes/head.php");
 include("includes/nav.php");
 require_once("../database/DB.php");
-include("../controller/CartController.php");
+
 include("../controller/ProductsController.php");
 
 
@@ -66,7 +66,7 @@ include("../controller/ProductsController.php");
 	
 		
 			foreach($products as $pp_price){
-					$product_price = array($pp_price['price']);
+					//$product_price = array($pp_price['price']);
 					$product_title = $pp_price['product_title'];
 					$product_image = $pp_price['product_img1'];
 					$single_price = $pp_price['price'];
@@ -87,21 +87,14 @@ include("../controller/ProductsController.php");
                         <?php
 							if(isset($_POST['update_cart'])){
                 $cat=new CartController();
-                $cart2=$cat->getPanier2($ip,$pro_id);
-								
-                      
-             
-							
-								
-								foreach($cart2 as $carts){
+                
 									
-									$pro_id=$carts['p_id'];
                   $new_qty=$_POST['qty'.$pro_id];
-                  $cat=new CartController();
+                  
                   $cart3=$cat->updatepanier($new_qty,$pro_id);
                  
 								
-								}
+								
 								echo "<script>window.open('cart.php','_self')</script>";
 							}
 						?>
@@ -127,15 +120,16 @@ include("../controller/ProductsController.php");
 			
 				$ip=getIp();
 				if(isset($_POST['update_cart'])){
+          
 					foreach($_POST['remove'] as $remove_id){
             $cat=new CartController();
             $cart3=$cat->supp($remove_id,$ip);
             
           
 						
-						foreach($cart3 as $row){
+						
 							echo "<script>window.open('cart.php','_self')</script>";
-						}						
+									
 					}
 				}
 				if(isset($_POST['continue'])){
@@ -143,7 +137,7 @@ include("../controller/ProductsController.php");
 				}
 		
 			}
-			echo @$upcart = updatecart();
+			echo  updatecart();
              ?>
              </div>
              <!-- Cart Total view -->

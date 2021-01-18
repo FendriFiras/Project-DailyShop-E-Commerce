@@ -19,18 +19,7 @@ try{
 }catch(PDOException $ex){ echo "erreur".$ex->getMessage();}
 }
 
-static public function getProductById($data){
-    $id=$data['id'];
-    try{
-        $stmt=DB::connect()->prepare('SELECT * FROM products WHERE product_id=:id');
-            $stmt->execute(array(":id" =>$id));
-            $result = $stmt->fetch(PDO::FETCH_OBJ);
-            return $result->row;
- 
-            $stmt=null;
-    
-    }catch(PDOException $ex){ echo "erreur".$ex->getMessage();}
-    }
+
     
     static public function getProductByCart($data){
       

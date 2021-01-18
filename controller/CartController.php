@@ -9,14 +9,7 @@ class CartController{
             return $panier;
        
 }
-public function getPanier2($id1,$id2){
-    
-   
-    
-    $panier=Cart::getCart2($id1,$id2);
-    return $panier;
 
-}
 public function getPanierpayment($data){
         
     $panier=Cart::getCartpayment($data);
@@ -41,6 +34,12 @@ public function vider($new){
         
     
     Cart::vidercart($new);
+    
+}
+public function insertionpanier($pro_id,$ip){
+        
+    
+    Cart::insertionpanier2($pro_id,$ip);
     
 }
 

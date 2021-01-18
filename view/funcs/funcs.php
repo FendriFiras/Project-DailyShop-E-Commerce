@@ -1,30 +1,16 @@
 <?php
 
+
 //displaying main categories	
-function getCatsMainNav(){
-	
-	$stmt=DB::connect()->prepare('SELECT * FROM category');
-	$stmt->execute();
-	$row=$stmt->fetchAll();
-              	
-				foreach($row as $row_cats){
-					
-					$cat_id = $row_cats['cat_id'];
-					$cat_title = $row_cats['cat_title'];
-					
-					echo "<li><a href='index.php?cat=$cat_id'>$cat_title</a></li>";
-				}
-	
-}
 
 //getting user IP
 function getIp() {
-    $ip = $_SERVER['REMOTE_ADDR'];
+    $ip = $_SERVER['REMOTE_ADDR'];// recupérer l'@ ip réelle du client
  
     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-        $ip = $_SERVER['HTTP_CLIENT_IP'];
+        $ip = $_SERVER['HTTP_CLIENT_IP']; //on peut trouver l'@ ip dans head HTTP_Client_IP 
     } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR']; // si l'@ ip est derrière un serveur proxy
     }
  
     return $ip;
@@ -38,63 +24,45 @@ function cart(){
 		
 		$ip=getIp();
 		$pro_id = $_GET['add_cart'];
-		$stmt1=DB::connect()->prepare("SELECT * FROM cart WHERE ip_add='$ip' And p_id='$pro_id'");
-		$stmt1->execute();
-		
-		$row1=$stmt1->fetchAll();
-		$num_rows=count($row1);
-		if($num_rows>0){
-			echo "";	
-		}
-		else{
-			$stmt2=DB::connect()->prepare("INSERT INTO cart (p_id,ip_add,qty) VALUES ('$pro_id','$ip',1)");
-		    $stmt2->execute();
-		
+		$cat=new CartController();
+       
+			$cat->insertionpanier($pro_id,$ip);
+			
 			echo "<script>window.open('index.php','_self')</script>";
-		}
+		
 	}
 }
 
-//getting total items in the cart
-function total_items(){
-	
-	$ip=getIp();
-	$stmt3=DB::connect()->prepare("SELECT * FROM cart WHERE ip_add='$ip'");
-	$stmt3->execute();
-	$row3=$stmt3->fetchAll();
-	$count_items=count($row3);
-	
-	echo $count_items;
-}
+
 
 //getting total price pf the cart
 function total_price(){
 	
 	$total=0;
 	$ip=getIp();
-	$stmt4=DB::connect()->prepare("SELECT * FROM cart WHERE ip_add='$ip'");
-	$stmt4->execute();
-	$row4=$stmt4->fetchAll();
+	$cat=new CartController();
+	$cart=$cat->getPanier($ip);
 	
-	
-	foreach($row4 as $p_price){
-		
+	foreach($cart as $p_price){
+			
 		$pro_id = $p_price['p_id'];
-
-		$stmt5=DB::connect()->prepare("SELECT * FROM products WHERE product_id='$pro_id'");
-	     $stmt5->execute();
-	     $row5=$stmt5->fetchAll();
 		
-			foreach($row5 as $pp_price){
-					$pro_price = array($pp_price['price']);
-					$values = array_sum($pro_price);
+		$prod=$pro->getProductByPanier($pro_id);
+		
+		
+		
+		
+		
+		foreach($prod as $pp_price){
+			$pro_price = array($pp_price['price']);
+			
+			$values = array_sum($pro_price);
 					
-					$total+=$values;
+			$total+=$values;
 			}
-	}
 	echo "$".$total;
-}
+}}
 
 
 
-?>
+?> 

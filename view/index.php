@@ -1,8 +1,9 @@
 <?php
+//include("../controller/CartController.php");
 include("includes/head.php"); 
 include("includes/nav.php");
 include("../controller/ProductsController.php");
-include("../controller/CartController.php");?>
+?>
 <?php
 
 

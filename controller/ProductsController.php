@@ -15,15 +15,6 @@ class ProductsController{
             return $products;
         }
 }
-public function getProduct(){
-    if(isset($_POST["id"])){
-        $data=array(
-            'id'=>$_POST["id"]
-        );
-        $products=Product::getProductById($data);
-        return $products;
-    }
-}
 
 public function getProductByPanier($id){
    

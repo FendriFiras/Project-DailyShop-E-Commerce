@@ -28,21 +28,7 @@ class Cart{
             }catch(PDOException $ex){ echo "erreur".$ex->getMessage();}
             }
 
-        static public function getCart2($data,$data2){
-           
-            try{
-                $stmt=DB::connect()->prepare('SELECT * FROM cart WHERE ip_add=:id And p_id=:id2');
-                    $stmt->execute([
-                        ':id' => $data,
-                        ':id2' => $data2
-                    ]);
-                    
-                    return $stmt->fetchAll();
-   
-                    $stmt=null;
-            
-            }catch(PDOException $ex){ echo "erreur".$ex->getMessage();}
-            }
+       
             
             static public function updatecarte($new,$prod){
            
@@ -88,5 +74,23 @@ class Cart{
                         
                         }catch(PDOException $ex){ echo "erreur".$ex->getMessage();}
                         }
+
+                        static public function insertionpanier2($pro_id,$ip){
+           
+
+                            try{
+                                $stmt=DB::connect()->prepare("INSERT INTO cart (p_id,ip_add,qty) VALUES (:pro_id,:ip,1)");
+                                    $stmt->execute(array(
+                                        ':pro_id' =>$pro_id,
+                                        ':ip' =>$ip,
+                                        ));
+                                  
+                                    
+                                  
+                                    $stmt=null;
+                            
+                            }catch(PDOException $ex){ echo "erreur".$ex->getMessage();}
+                        
+                    }
         } ?>
         

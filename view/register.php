@@ -20,7 +20,7 @@ include("../controller/RegisterController.php");
           <ul class="nav navbar-nav">
             <li><a href="index.php">Home</a></li>
             
-			<?php getCatsMainNav(); ?>
+			
             
             <li style="float:right"><a>
             <?php

@@ -1,6 +1,7 @@
 <!-- menu -->
 
 <?php include("../controller/CategoriesController.php"); 
+include("../controller/CartController.php");
 $cat = new CategoriesController();
 $categories = $cat->getAllCategories();?>
 
